@@ -121,3 +121,67 @@
   background: #E8001C;
   color: white;
 }
+
+/* Responsive Mobile Navbar */
+@media (max-width: 768px) {
+  .navbar-kiosque {
+    padding: 0 15px;
+  }
+
+  .navbar-kiosque-inner {
+    display: flex;
+    flex-wrap: wrap;
+    height: auto;
+    padding: 12px 0;
+    gap: 12px;
+    justify-content: space-between;
+  }
+
+  /* Top Left: Logo & Brand */
+  .navbar-kiosque-inner > div:first-child {
+    order: 1;
+    max-width: 60%;
+  }
+
+  .navbar-brand-sub {
+    display: none;
+  }
+
+  /* Top Right: User & Time */
+  .navbar-kiosque-inner > div:last-child {
+    order: 2;
+    max-width: 40%;
+    gap: 12px !important;
+  }
+
+  .navbar-time {
+    display: none;
+  }
+
+  .navbar-user span {
+    display: none;
+  }
+
+  /* Bottom Row: Navigation Links */
+  .navbar-links {
+    order: 3;
+    width: 100%;
+    justify-content: space-between;
+    gap: 4px;
+    border-top: 1px solid #f0f0f0;
+    padding-top: 10px;
+    margin-top: 4px;
+  }
+
+  .navbar-link {
+    padding: 6px 4px;
+    font-size: 0.7rem;
+    flex: 1;
+    align-items: center;
+    border-radius: 10px;
+  }
+
+  .navbar-link i {
+    font-size: 1.1rem;
+  }
+}
