@@ -5,7 +5,7 @@ Projet réalisé pour démontrer mes compétences en développement Angular dans
 
 ## 🌐 Démo en ligne
 
-> 🔗 **[cantineapp.vercel.app](https://cantineapp.vercel.app)** *(à mettre à jour après déploiement)*
+> 🔗 **[cantineapp.vercel.app](https://cantine-app-blue.vercel.app)** *(à mettre à jour après déploiement)*
 
 **Compte de test :**
 - Email : `test@cantine.fr`
