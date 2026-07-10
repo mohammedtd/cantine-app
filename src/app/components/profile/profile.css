@@ -1,0 +1,29 @@
+.profile-avatar {
+  width: 75px;
+  height: 75px;
+  background: #E8001C;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  font-weight: 800;
+  box-shadow: 0 4px 15px rgba(232, 0, 28, 0.15);
+}
+
+.btn-save {
+  background-color: #E8001C;
+  border: none;
+  transition: all 0.2s ease;
+}
+
+.btn-save:hover {
+  background-color: #c30016;
+  transform: translateY(-1px);
+}
+
+.form-control:focus {
+  border-color: #E8001C;
+  box-shadow: 0 0 0 0.2rem rgba(232, 0, 28, 0.15);
+}

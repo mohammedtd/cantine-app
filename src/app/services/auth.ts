@@ -30,6 +30,10 @@ export class AuthService {
     localStorage.setItem('utilisateur', JSON.stringify(res.utilisateur));
   }
 
+  updateUtilisateurLocal(utilisateur: Utilisateur) {
+    localStorage.setItem('utilisateur', JSON.stringify(utilisateur));
+  }
+
   deconnexion() {
     localStorage.removeItem('token');
     localStorage.removeItem('utilisateur');

@@ -36,8 +36,14 @@
         <a class="navbar-link"
            [class.active]="isActive('compte')"
            [routerLink]="['/compte']">
-          <i class="bi bi-person-circle"></i>
+          <i class="bi bi-wallet2"></i>
           <span>Mon compte</span>
+        </a>
+        <a class="navbar-link"
+           [class.active]="isActive('profile')"
+           [routerLink]="['/profile']">
+          <i class="bi bi-person-vcard"></i>
+          <span>Mon profil</span>
         </a>
       </div>
 
@@ -46,10 +52,10 @@
           <div class="navbar-heure">{{ heure }}</div>
           <div class="navbar-date">{{ date }}</div>
         </div>
-        <div class="navbar-user">
+        <div class="navbar-user" [routerLink]="['/profile']" style="cursor: pointer;" title="Voir mon profil">
           <i class="bi bi-person-circle" style="color: #E8001C;"></i>
           <span>{{ utilisateur?.nom }}</span>
-          <button class="btn-deconnexion" (click)="seDeconnecter()" title="Se déconnecter">
+          <button class="btn-deconnexion" (click)="seDeconnecter(); $event.stopPropagation()" title="Se déconnecter">
             <i class="bi bi-box-arrow-right"></i>
           </button>
         </div>

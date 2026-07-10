@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Menu, Reservation, CompteInfo } from '../models';
+import { Menu, Reservation, CompteInfo, Utilisateur } from '../models';
 
 @Injectable({
   providedIn: 'root'
@@ -33,6 +33,10 @@ export class ApiService {
   // compte
   getCompte(): Observable<CompteInfo> {
     return this.http.get<CompteInfo>(`${this.baseUrl}/compte`);
+  }
+
+  updateCompte(data: { nom: string; email: string; classe: string }): Observable<Utilisateur> {
+    return this.http.put<Utilisateur>(`${this.baseUrl}/compte/update`, data);
   }
 
   rechargerSolde(montant: number): Observable<{ solde: number }> {

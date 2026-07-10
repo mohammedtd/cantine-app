@@ -35,6 +35,10 @@ export class Login implements OnInit {
   ) {}
 
   ngOnInit() {
+    if (this.authService.estConnecte()) {
+      this.router.navigate(['/accueil']);
+      return;
+    }
     const requestedMode = this.route.snapshot.queryParams['mode'];
     if (requestedMode === 'connexion' || requestedMode === 'inscription') {
       this.mode = requestedMode;

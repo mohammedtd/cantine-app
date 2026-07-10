@@ -1,0 +1,106 @@
+<div class="kiosque-container">
+
+  <!-- Header page -->
+  <div class="page-header d-flex align-items-center justify-content-between">
+    <div class="d-flex align-items-center gap-3">
+      <div class="page-icon" style="background-color: #fff0f0;">
+        <i class="bi bi-person-bounding-box" style="color: #E8001C;"></i>
+      </div>
+      <div>
+        <h1 class="page-title">Mon Profil</h1>
+        <p class="page-subtitle">Consultez et modifiez vos informations personnelles</p>
+      </div>
+    </div>
+  </div>
+
+  @if (loading) {
+    <div class="text-center py-5">
+      <div class="spinner-border" style="color: #E8001C;" role="status"></div>
+      <p class="mt-3 text-muted">Chargement des informations...</p>
+    </div>
+  }
+
+  @if (!loading && utilisateur) {
+    <div class="row g-4 justify-content-center">
+      <div class="col-lg-8">
+        <div class="kiosque-card p-4">
+
+          <!-- Avatar / Greeting -->
+          <div class="d-flex align-items-center gap-4 mb-5 pb-4 border-bottom">
+            <div class="profile-avatar">
+              {{ utilisateur.nom[0] }}
+            </div>
+            <div>
+              <h4 class="fw-bold mb-1" style="color: #2d2d2d;">{{ utilisateur.nom }}</h4>
+              <p class="text-muted mb-0 small">
+                <span class="badge bg-secondary me-2 text-uppercase">{{ utilisateur.role }}</span>
+                Solde actuel : <strong class="text-danger">{{ utilisateur.solde }} €</strong>
+              </p>
+            </div>
+          </div>
+
+          <!-- Alert error -->
+          @if (erreur) {
+            <div class="alert alert-danger rounded-4 mb-4">
+              <i class="bi bi-exclamation-triangle-fill me-2"></i>
+              {{ erreur }}
+            </div>
+          }
+
+          <!-- Edit Form -->
+          <div class="row g-3">
+            <div class="col-md-6">
+              <label class="form-label fw-semibold small" style="color: #2d2d2d;">Nom complet</label>
+              <input type="text"
+                     class="form-control rounded-3"
+                     [(ngModel)]="form.nom"
+                     placeholder="Jean Luc">
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label fw-semibold small" style="color: #2d2d2d;">Adresse Email</label>
+              <input type="email"
+                     class="form-control rounded-3"
+                     [(ngModel)]="form.email"
+                     placeholder="votre@email.com">
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label fw-semibold small" style="color: #2d2d2d;">Classe</label>
+              <input type="text"
+                     class="form-control rounded-3"
+                     [(ngModel)]="form.classe"
+                     placeholder="3ème A">
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label fw-semibold small text-muted">Rôle (non modifiable)</label>
+              <input type="text"
+                     class="form-control rounded-3 bg-light text-muted"
+                     [value]="utilisateur.role === 'admin' ? 'Administrateur' : 'Élève'"
+                     disabled>
+            </div>
+          </div>
+
+          <!-- Buttons -->
+          <div class="d-flex gap-3 mt-5">
+            <button class="btn btn-light rounded-pill px-4 fw-semibold border"
+                    [routerLink]="['/accueil']">
+              Annuler
+            </button>
+            <button class="btn rounded-pill px-4 fw-semibold text-white btn-save"
+                    [disabled]="saving"
+                    (click)="enregistrer()">
+              @if (saving) {
+                <span class="spinner-border spinner-border-sm me-2"></span>
+              }
+              <i class="bi bi-check-circle me-2"></i>Enregistrer
+            </button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  }
+
+</div>
