@@ -1,56 +1,82 @@
 <div class="landing-container">
-  <div class="landing-card">
-    <!-- Logo & Title -->
-    <div class="text-center mb-5">
-      <div class="landing-logo-wrapper">
+
+  <!-- Left side -->
+  <div class="landing-left">
+    <div class="landing-badge">
+      <i class="bi bi-shield-check me-2"></i>Borne tactile sécurisée
+    </div>
+    <h1 class="landing-title">
+      Gérez votre cantine <span class="landing-title-accent">simplement</span>
+    </h1>
+    <p class="landing-subtitle">
+      Consultez les menus, réservez vos repas et gérez votre compte depuis votre borne de cantine scolaire.
+    </p>
+
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon" style="background:#fff0f0;">
+          <i class="bi bi-journal-text" style="color:#E8001C;"></i>
+        </div>
+        <h6>Menu de la semaine</h6>
+        <p>Des plats variés et équilibrés chaque jour</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon" style="background:#f0fff4;">
+          <i class="bi bi-calendar-check" style="color:#1a8a4a;"></i>
+        </div>
+        <h6>Réservation rapide</h6>
+        <p>Réservez ou annulez en quelques clics</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon" style="background:#f0f4ff;">
+          <i class="bi bi-wallet2" style="color:#2d6be4;"></i>
+        </div>
+        <h6>Mon solde</h6>
+        <p>Suivez et rechargez votre compte</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon" style="background:#fff8f0;">
+          <i class="bi bi-credit-card" style="color:#f97316;"></i>
+        </div>
+        <h6>Paiement facile</h6>
+        <p>Carte bancaire ou ticket restaurant</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Right side -->
+  <div class="landing-right">
+    <div class="landing-card">
+
+      <!-- Logo -->
+      <div class="text-center mb-4">
         <div class="landing-logo">
           <i class="bi bi-egg-fried"></i>
         </div>
+        <h2 class="fw-bold mt-3" style="color:#2d2d2d;">CantineApp</h2>
+        <p class="text-muted small">Connectez-vous pour accéder à votre espace</p>
       </div>
-      <h1 class="landing-title">Bienvenue sur CantineApp</h1>
-      <p class="landing-subtitle">
-        Votre espace numérique pour consulter les menus, réserver vos repas en quelques clics et gérer votre compte.
-      </p>
-    </div>
 
-    <!-- Features Overview -->
-    <div class="features-list mb-5">
-      <div class="feature-item">
-        <i class="bi bi-journal-text text-danger"></i>
-        <div>
-          <h6>Menu de la semaine</h6>
-          <p>Découvrez chaque jour des plats variés et équilibrés.</p>
-        </div>
+      <!-- Boutons -->
+      <div class="d-flex flex-column gap-3">
+        <button class="btn-primary-landing"
+                [routerLink]="['/login']"
+                [queryParams]="{ mode: 'connexion' }">
+          <i class="bi bi-box-arrow-in-right me-2"></i>Se connecter
+        </button>
+        <button class="btn-secondary-landing"
+                [routerLink]="['/login']"
+                [queryParams]="{ mode: 'inscription' }">
+          <i class="bi bi-person-plus me-2"></i>Créer un compte
+        </button>
       </div>
-      <div class="feature-item">
-        <i class="bi bi-calendar-check text-success"></i>
-        <div>
-          <h6>Réservation rapide</h6>
-          <p>Réservez ou annulez vos repas en toute simplicité.</p>
-        </div>
-      </div>
-      <div class="feature-item">
-        <i class="bi bi-wallet2 text-primary"></i>
-        <div>
-          <h6>Mon compte & Solde</h6>
-          <p>Suivez vos consommations et rechargez votre solde.</p>
-        </div>
-      </div>
-    </div>
 
-    <!-- Actions Buttons -->
-    <div class="d-flex flex-column gap-3">
-      <button class="btn-primary-landing" [routerLink]="['/login']" [queryParams]="{ mode: 'connexion' }">
-        <i class="bi bi-box-arrow-in-right me-2"></i>Se connecter
-      </button>
-      <button class="btn-secondary-landing" [routerLink]="['/login']" [queryParams]="{ mode: 'inscription' }">
-        <i class="bi bi-person-plus me-2"></i>Créer un compte
-      </button>
-    </div>
+      <!-- Footer -->
+      <div class="text-center mt-4 text-muted small">
+        <i class="bi bi-lock me-1"></i>Connexion sécurisée
+      </div>
 
-    <!-- Footer -->
-    <div class="text-center mt-5 text-muted small">
-      <i class="bi bi-shield-check me-1"></i> Borne tactile de la cantine scolaire
     </div>
   </div>
+
 </div>
