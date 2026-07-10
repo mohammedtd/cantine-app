@@ -15,6 +15,7 @@ export class Menu implements OnInit {
   menus: MenuModel[] = [];
   loading = true;
   error = '';
+  erreurPaiement = '';
   menuSelectionne: MenuModel | null = null;
   showPopup = false;
   showPaiement = false;
@@ -52,6 +53,7 @@ export class Menu implements OnInit {
     this.showPanier = false;
     this.modePaiement = '';
     this.paiementConfirme = false;
+    this.erreurPaiement = '';
   }
 
   fermerPopup() {
@@ -60,6 +62,7 @@ export class Menu implements OnInit {
     this.showPanier = false;
     this.showPaiement = false;
     this.paiementConfirme = false;
+    this.erreurPaiement = '';
   }
 
   ajouterAuPanier() {
@@ -76,6 +79,7 @@ export class Menu implements OnInit {
     this.menuSelectionne = null;
     this.showPaiement = false;
     this.paiementConfirme = false;
+    this.erreurPaiement = '';
   }
 
   passerAuPaiement() {
@@ -83,6 +87,7 @@ export class Menu implements OnInit {
       this.panierService.ajouterAuPanier(this.menuSelectionne);
     }
     this.showPaiement = true;
+    this.erreurPaiement = '';
   }
 
   choisirModePaiement(mode: string) {
@@ -93,6 +98,7 @@ export class Menu implements OnInit {
     const items = this.panierService.getItems();
     const total = items.length * 3.50;
     this.paiementLoading = true;
+    this.erreurPaiement = '';
 
     this.apiService.payerRepas(total).subscribe({
       next: () => {
@@ -108,7 +114,14 @@ export class Menu implements OnInit {
       error: (err) => {
         this.paiementLoading = false;
         const msg = err.error?.message || 'Erreur lors du paiement';
-        this.toastService.error(msg);
+        
+        if (msg === 'Solde insuffisant') {
+          this.erreurPaiement = "Vous n'avez pas de solde suffisant pour effectuer ce paiement.";
+        } else {
+          this.erreurPaiement = msg;
+        }
+
+        this.toastService.error(this.erreurPaiement);
         this.cdr.detectChanges();
       }
     });
