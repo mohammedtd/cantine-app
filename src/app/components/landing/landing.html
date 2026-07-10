@@ -1,0 +1,56 @@
+<div class="landing-container">
+  <div class="landing-card">
+    <!-- Logo & Title -->
+    <div class="text-center mb-5">
+      <div class="landing-logo-wrapper">
+        <div class="landing-logo">
+          <i class="bi bi-egg-fried"></i>
+        </div>
+      </div>
+      <h1 class="landing-title">Bienvenue sur CantineApp</h1>
+      <p class="landing-subtitle">
+        Votre espace numérique pour consulter les menus, réserver vos repas en quelques clics et gérer votre compte.
+      </p>
+    </div>
+
+    <!-- Features Overview -->
+    <div class="features-list mb-5">
+      <div class="feature-item">
+        <i class="bi bi-journal-text text-danger"></i>
+        <div>
+          <h6>Menu de la semaine</h6>
+          <p>Découvrez chaque jour des plats variés et équilibrés.</p>
+        </div>
+      </div>
+      <div class="feature-item">
+        <i class="bi bi-calendar-check text-success"></i>
+        <div>
+          <h6>Réservation rapide</h6>
+          <p>Réservez ou annulez vos repas en toute simplicité.</p>
+        </div>
+      </div>
+      <div class="feature-item">
+        <i class="bi bi-wallet2 text-primary"></i>
+        <div>
+          <h6>Mon compte & Solde</h6>
+          <p>Suivez vos consommations et rechargez votre solde.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Actions Buttons -->
+    <div class="d-flex flex-column gap-3">
+      <button class="btn-primary-landing" [routerLink]="['/login']" [queryParams]="{ mode: 'connexion' }">
+        <i class="bi bi-box-arrow-in-right me-2"></i>Se connecter
+      </button>
+      <button class="btn-secondary-landing" [routerLink]="['/login']" [queryParams]="{ mode: 'inscription' }">
+        <i class="bi bi-person-plus me-2"></i>Créer un compte
+      </button>
+    </div>
+
+    <!-- Footer -->
+    <div class="text-center mt-5 text-muted small">
+      <i class="bi bi-shield-check me-1"></i> Borne tactile de la cantine scolaire
+    </div>
+  </div>
+</div>

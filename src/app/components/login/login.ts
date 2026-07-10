@@ -1,7 +1,7 @@
-import { Component, ChangeDetectorRef } from '@angular/core';
+import { Component, ChangeDetectorRef, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from '../../services/auth';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
   templateUrl: './login.html',
   styleUrl: './login.css',
 })
-export class Login {
+export class Login implements OnInit {
 
   mode: 'connexion' | 'inscription' = 'connexion';
   loading = false;
@@ -30,8 +30,16 @@ export class Login {
   constructor(
     private authService: AuthService,
     private router: Router,
+    private route: ActivatedRoute,
     private cdr: ChangeDetectorRef
   ) {}
+
+  ngOnInit() {
+    const requestedMode = this.route.snapshot.queryParams['mode'];
+    if (requestedMode === 'connexion' || requestedMode === 'inscription') {
+      this.mode = requestedMode;
+    }
+  }
 
   seConnecter() {
     this.erreur = '';
