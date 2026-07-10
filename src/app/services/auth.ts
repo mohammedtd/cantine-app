@@ -9,7 +9,7 @@ import { AuthResponse, Utilisateur } from '../models';
 })
 export class AuthService {
 
-  private baseUrl = 'http://localhost:3000/api/auth';
+  private baseUrl = 'https://cantine-backend.onrender.com/api/auth';
 
   constructor(private http: HttpClient) {}
 

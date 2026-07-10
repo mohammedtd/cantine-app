@@ -8,7 +8,7 @@ import { Menu, Reservation, CompteInfo } from '../models';
 })
 export class ApiService {
 
-  private baseUrl = 'http://localhost:3000/api';
+  private baseUrl = 'https://cantine-backend.onrender.com/api';
 
   constructor(private http: HttpClient) {}
 
