@@ -1,0 +1,16 @@
+.btn-annuler {
+  background: #fff0f0;
+  border: none;
+  border-radius: 10px;
+  padding: 8px 14px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #E8001C;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-annuler:hover {
+  background: #E8001C;
+  color: white;
+}

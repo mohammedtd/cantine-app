@@ -1,59 +1,113 @@
-# CantineApp
+# 🍽️ CantineApp — Kiosque de gestion de cantine scolaire
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 22.0.5.
+Application web Angular simulant un kiosque numérique pour la gestion de cantine scolaire.  
+Projet réalisé pour démontrer mes compétences en développement Angular dans le cadre d'une candidature à un poste d'alternance.
 
-## Development server
+## 🌐 Démo en ligne
 
-To start a local development server, run:
+> 🔗 **[cantineapp.vercel.app](https://cantineapp.vercel.app)** *(à mettre à jour après déploiement)*
+
+**Compte de test :**
+- Email : `test@cantine.fr`
+- Mot de passe : `test123`
+
+---
+
+## ✨ Fonctionnalités
+
+- 🔐 **Authentification** — Connexion / Inscription avec JWT
+- 🍽️ **Menu de la semaine** — Consultation des plats avec photos
+- 🛒 **Panier & Paiement** — Ajout au panier, choix du mode de paiement
+- 📋 **Réservations** — Historique et annulation
+- 👤 **Mon compte** — Solde, recharge, profil
+
+---
+
+## 🛠️ Stack technique
+
+### Frontend
+| Technologie | Version | Rôle |
+|---|---|---|
+| **Angular** | 22 | Framework principal |
+| **TypeScript** | 6 | Typage statique |
+| **Bootstrap** | 5.3 | UI Components |
+| **Bootstrap Icons** | 1.13 | Icônes |
+
+### Backend
+| Technologie | Version | Rôle |
+|---|---|---|
+| **Node.js / Express** | 5 | API REST |
+| **MongoDB / Mongoose** | 9 | Base de données |
+| **JWT** | — | Authentification |
+| **bcryptjs** | — | Hachage des mots de passe |
+
+### Patterns Angular utilisés
+- ✅ Standalone Components
+- ✅ Angular Router avec Lazy Loading
+- ✅ AuthGuard (protection des routes)
+- ✅ HTTP Interceptor (token JWT automatique)
+- ✅ Services (AuthService, ApiService, ToastService)
+- ✅ Interfaces TypeScript métier
+
+---
+
+## 🚀 Installation locale
+
+### Prérequis
+- Node.js 18+
+- npm
+- MongoDB (local ou Atlas)
+
+### 1. Cloner le projet
 
 ```bash
-ng serve
+git clone https://github.com/<ton-pseudo>/cantine-app.git
+cd cantine-app
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+### 2. Lancer le backend
 
 ```bash
-ng generate component component-name
+cd cantine-backend
+npm install
+cp .env.example .env
+# Remplir MONGO_URI et JWT_SECRET dans .env
+npm start
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+### 3. Lancer le frontend
 
 ```bash
-ng generate --help
+cd cantine-app
+npm install
+npm start
 ```
 
-## Building
+> L'application sera disponible sur **http://localhost:4200**
 
-To build the project run:
+---
 
-```bash
-ng build
+## 📁 Structure du projet
+
+```
+cantine-app/                  # Frontend Angular
+├── src/app/
+│   ├── components/           # Composants (login, accueil, menu, reservation, compte)
+│   ├── services/             # Services (auth, api, toast, panier)
+│   ├── guards/               # AuthGuard
+│   ├── interceptors/         # HTTP Interceptor JWT
+│   ├── models/               # Interfaces TypeScript
+│   └── app.routes.ts         # Routing avec lazy loading
+
+cantine-backend/              # Backend Node.js
+├── models/                   # Modèles Mongoose (Utilisateur, Menu, Reservation)
+├── routes/                   # Routes Express (auth, menus, reservations, compte)
+├── middleware/               # Auth middleware JWT
+└── server.js                 # Point d'entrée
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+---
 
-## Running unit tests
+## 👨‍💻 Auteur
 
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Projet réalisé par **Mohammed** dans le cadre d'une candidature alternance développeur Front-End Angular.

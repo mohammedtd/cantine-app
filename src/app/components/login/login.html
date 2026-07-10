@@ -1,0 +1,122 @@
+<div class="login-container">
+
+  <div class="login-card">
+
+    <!-- Logo -->
+    <div class="text-center mb-4">
+      <div class="login-logo">
+        <i class="bi bi-egg-fried"></i>
+      </div>
+      <h2 class="fw-bold mt-3" style="color: #2d2d2d;">CantineApp</h2>
+      <p class="text-muted">Système de gestion de cantine scolaire</p>
+    </div>
+
+    <!-- Tabs -->
+    <div class="login-tabs mb-4">
+      <button class="login-tab"
+              [class.active]="mode === 'connexion'"
+              (click)="mode = 'connexion'">
+        Connexion
+      </button>
+      <button class="login-tab"
+              [class.active]="mode === 'inscription'"
+              (click)="mode = 'inscription'">
+        Inscription
+      </button>
+    </div>
+
+    <!-- Erreur -->
+    @if (erreur) {
+    <div class="erreur-popup">
+        <i class="bi bi-exclamation-triangle-fill me-2"></i>
+        {{ erreur }}
+    </div>
+    }
+
+    <!-- Formulaire connexion -->
+    @if (mode === 'connexion') {
+      <div class="d-flex flex-column gap-3">
+        <div>
+          <label class="form-label fw-semibold small" style="color: #2d2d2d;">
+            Email
+          </label>
+          <input type="email"
+                 class="form-control rounded-3"
+                 placeholder="votre@email.com"
+                 [(ngModel)]="formConnexion.email">
+        </div>
+        <div>
+          <label class="form-label fw-semibold small" style="color: #2d2d2d;">
+            Mot de passe
+          </label>
+          <input type="password"
+                 class="form-control rounded-3"
+                 placeholder="••••••••"
+                 [(ngModel)]="formConnexion.motDePasse">
+        </div>
+        <button class="btn-login mt-2"
+                (click)="seConnecter()"
+                [disabled]="loading">
+          @if (loading) {
+            <span class="spinner-border spinner-border-sm me-2"></span>
+          }
+          <i class="bi bi-box-arrow-in-right me-2"></i>
+          Se connecter
+        </button>
+      </div>
+    }
+
+    <!-- Formulaire inscription -->
+    @if (mode === 'inscription') {
+      <div class="d-flex flex-column gap-3">
+        <div>
+          <label class="form-label fw-semibold small" style="color: #2d2d2d;">
+            Nom complet
+          </label>
+          <input type="text"
+                 class="form-control rounded-3"
+                 placeholder="Jean Luc"
+                 [(ngModel)]="formInscription.nom">
+        </div>
+        <div>
+          <label class="form-label fw-semibold small" style="color: #2d2d2d;">
+            Email
+          </label>
+          <input type="email"
+                 class="form-control rounded-3"
+                 placeholder="votre@email.com"
+                 [(ngModel)]="formInscription.email">
+        </div>
+        <div>
+          <label class="form-label fw-semibold small" style="color: #2d2d2d;">
+            Mot de passe
+          </label>
+          <input type="password"
+                 class="form-control rounded-3"
+                 placeholder="••••••••"
+                 [(ngModel)]="formInscription.motDePasse">
+        </div>
+        <div>
+          <label class="form-label fw-semibold small" style="color: #2d2d2d;">
+            Classe
+          </label>
+          <input type="text"
+                 class="form-control rounded-3"
+                 placeholder="3ème A"
+                 [(ngModel)]="formInscription.classe">
+        </div>
+        <button class="btn-login mt-2"
+                (click)="sInscrire()"
+                [disabled]="loading">
+          @if (loading) {
+            <span class="spinner-border spinner-border-sm me-2"></span>
+          }
+          <i class="bi bi-person-plus me-2"></i>
+          S'inscrire
+        </button>
+      </div>
+    }
+
+  </div>
+
+</div>

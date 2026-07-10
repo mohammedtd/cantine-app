@@ -1,1 +1,59 @@
-/* You can add global styles to this file, and also import other style files */
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #f5f5f5;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.kiosque-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 30px 20px;
+}
+
+.kiosque-card {
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 2px 15px rgba(0,0,0,0.06);
+  overflow: hidden;
+}
+
+.page-header {
+  background: white;
+  border-radius: 20px;
+  padding: 24px 28px;
+  box-shadow: 0 2px 15px rgba(0,0,0,0.06);
+  margin-bottom: 30px;
+}
+
+.page-icon {
+  width: 55px;
+  height: 55px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+}
+
+.page-title {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: #2d2d2d;
+  margin: 0;
+}
+
+.page-subtitle {
+  font-size: 0.85rem;
+  color: #888;
+  margin: 0;
+}
+
+.kiosque-alert {
+  background-color: #fff0f0;
+  border-radius: 12px;
+  padding: 14px 20px;
+  color: #E8001C;
+  display: flex;
+  align-items: center;
+}

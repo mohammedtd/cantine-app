@@ -1,0 +1,76 @@
+<div class="kiosque-container">
+
+  <!-- Header -->
+  <div class="kiosque-header">
+    <div class="d-flex align-items-center gap-3">
+      <div class="kiosque-logo">
+        <i class="bi bi-egg-fried"></i>
+      </div>
+      <div>
+        <h1 class="kiosque-title">CantineApp</h1>
+        <p class="kiosque-subtitle">Système de gestion de cantine scolaire</p>
+      </div>
+    </div>
+    <div class="kiosque-time">
+      <div class="kiosque-heure">{{ heure }}</div>
+      <div class="kiosque-date">{{ date }}</div>
+    </div>
+  </div>
+
+  <!-- Hero -->
+  <div class="kiosque-hero">
+    <div class="hero-icon">
+      <i class="bi bi-shop"></i>
+    </div>
+    <h2 class="hero-title">Bonjour, {{ utilisateur?.nom || 'là' }} 👋</h2>
+    <p class="hero-subtitle">Consultez le menu, réservez votre repas et gérez votre compte en quelques clics.</p>
+  </div>
+
+  <!-- Actions -->
+  <div class="kiosque-actions">
+
+    <div class="action-card" (click)="goTo('menu')">
+      <div class="action-icon" style="background-color: #fff0f0;">
+        <i class="bi bi-journal-text" style="color: #E8001C;"></i>
+      </div>
+      <h3 class="action-title">Menu du jour</h3>
+      <p class="action-desc">Consultez les repas de la semaine</p>
+      <div class="action-arrow">
+        <i class="bi bi-arrow-right-circle-fill" style="color: #E8001C;"></i>
+      </div>
+    </div>
+
+    <div class="action-card" (click)="goTo('reservation')">
+      <div class="action-icon" style="background-color: #f0fff4;">
+        <i class="bi bi-calendar-check" style="color: #1a8a4a;"></i>
+      </div>
+      <h3 class="action-title">Réserver</h3>
+      <p class="action-desc">Réservez vos repas de la semaine</p>
+      <div class="action-arrow">
+        <i class="bi bi-arrow-right-circle-fill" style="color: #1a8a4a;"></i>
+      </div>
+    </div>
+
+    <div class="action-card" (click)="goTo('compte')">
+      <div class="action-icon" style="background-color: #f0f4ff;">
+        <i class="bi bi-person-circle" style="color: #2d6be4;"></i>
+      </div>
+      <h3 class="action-title">Mon compte</h3>
+      <p class="action-desc">Gérez votre solde et votre historique</p>
+      <div class="action-arrow">
+        <i class="bi bi-arrow-right-circle-fill" style="color: #2d6be4;"></i>
+      </div>
+    </div>
+
+
+  </div>
+
+  <!-- Footer -->
+  <div class="kiosque-footer">
+    <p>
+      <i class="bi bi-shield-check me-2"></i>
+      Système sécurisé — Cantine © 2026
+    </p>
+  </div>
+
+</div>

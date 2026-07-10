@@ -1,0 +1,12 @@
+<div class="toast-container">
+  @for (toast of toastService.toasts; track toast.id) {
+    <div class="toast-item toast-{{ toast.type }}" (click)="toastService.remove(toast.id)">
+      <i class="bi me-2"
+         [class.bi-check-circle-fill]="toast.type === 'success'"
+         [class.bi-exclamation-triangle-fill]="toast.type === 'error'"
+         [class.bi-info-circle-fill]="toast.type === 'info'">
+      </i>
+      {{ toast.message }}
+    </div>
+  }
+</div>

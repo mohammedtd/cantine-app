@@ -1,0 +1,123 @@
+.navbar-kiosque {
+  background: white;
+  box-shadow: 0 2px 15px rgba(0,0,0,0.08);
+  padding: 0 30px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.navbar-kiosque-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 75px;
+}
+
+.kiosque-logo-nav {
+  width: 42px;
+  height: 42px;
+  background-color: #E8001C;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  color: white;
+}
+
+.navbar-brand-title {
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: #2d2d2d;
+  margin: 0;
+  line-height: 1;
+}
+
+.navbar-brand-sub {
+  font-size: 0.75rem;
+  color: #888;
+  margin: 0;
+}
+
+.navbar-links {
+  display: flex;
+  gap: 8px;
+}
+
+.navbar-link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  padding: 8px 16px;
+  border-radius: 12px;
+  cursor: pointer;
+  text-decoration: none;
+  color: #888;
+  font-size: 0.75rem;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+
+.navbar-link i {
+  font-size: 1.2rem;
+}
+
+.navbar-link:hover {
+  background-color: #fff0f0;
+  color: #E8001C;
+}
+
+.navbar-link.active {
+  background-color: #fff0f0;
+  color: #E8001C;
+}
+
+.navbar-time {
+  text-align: right;
+}
+
+.navbar-heure {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #E8001C;
+  line-height: 1;
+}
+
+.navbar-date {
+  font-size: 0.75rem;
+  color: #888;
+  text-transform: capitalize;
+}
+
+.navbar-user {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #2d2d2d;
+}
+
+.btn-deconnexion {
+  background: #fff0f0;
+  border: none;
+  border-radius: 8px;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #E8001C;
+  font-size: 0.9rem;
+  transition: background 0.2s;
+}
+
+.btn-deconnexion:hover {
+  background: #E8001C;
+  color: white;
+}
