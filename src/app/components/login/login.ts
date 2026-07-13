@@ -11,9 +11,10 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class Login implements OnInit {
 
-  mode: 'connexion' | 'inscription' = 'connexion';
+  mode: 'connexion' | 'inscription' | 'oublie' | 'reinitialiser' = 'connexion';
   loading = false;
   erreur = '';
+  succes = '';
 
   formConnexion = {
     email: '',
@@ -25,6 +26,16 @@ export class Login implements OnInit {
     email: '',
     motDePasse: '',
     classe: ''
+  };
+
+  formOublie = {
+    email: ''
+  };
+
+  formReinit = {
+    token: '',
+    nouveauMotDePasse: '',
+    confirmation: ''
   };
 
   constructor(
@@ -40,13 +51,21 @@ export class Login implements OnInit {
       return;
     }
     const requestedMode = this.route.snapshot.queryParams['mode'];
+    const token = this.route.snapshot.queryParams['token'];
+
     if (requestedMode === 'connexion' || requestedMode === 'inscription') {
       this.mode = requestedMode;
+    } else if (requestedMode === 'oublie') {
+      this.mode = 'oublie';
+    } else if (token) {
+      this.mode = 'reinitialiser';
+      this.formReinit.token = token;
     }
   }
 
   seConnecter() {
     this.erreur = '';
+    this.succes = '';
     this.loading = false;
 
     if (!this.formConnexion.email || !this.formConnexion.motDePasse) {
@@ -72,6 +91,7 @@ export class Login implements OnInit {
 
   sInscrire() {
     this.erreur = '';
+    this.succes = '';
     this.loading = false;
 
     if (!this.formInscription.nom) {
@@ -111,4 +131,75 @@ export class Login implements OnInit {
     });
   }
 
+  demanderReinit() {
+    this.erreur = '';
+    this.succes = '';
+
+    if (!this.formOublie.email) {
+      this.erreur = 'Veuillez saisir votre adresse email.';
+      return;
+    }
+
+    this.loading = true;
+    this.cdr.detectChanges();
+
+    this.authService.motDePasseOublie(this.formOublie.email).subscribe({
+      next: (res) => {
+        this.loading = false;
+        this.succes = res.message;
+        this.cdr.detectChanges();
+      },
+      error: (err) => {
+        this.loading = false;
+        this.erreur = err.error?.message || 'Une erreur est survenue. Réessayez.';
+        this.cdr.detectChanges();
+      }
+    });
+  }
+
+  reinitialiserMotDePasse() {
+    this.erreur = '';
+    this.succes = '';
+
+    if (!this.formReinit.nouveauMotDePasse) {
+      this.erreur = 'Veuillez saisir un nouveau mot de passe.';
+      return;
+    }
+    if (this.formReinit.nouveauMotDePasse.length < 6) {
+      this.erreur = 'Le mot de passe doit contenir au moins 6 caractères.';
+      return;
+    }
+    if (this.formReinit.nouveauMotDePasse !== this.formReinit.confirmation) {
+      this.erreur = 'Les mots de passe ne correspondent pas.';
+      return;
+    }
+
+    this.loading = true;
+    this.cdr.detectChanges();
+
+    this.authService.reinitialiserMotDePasse(this.formReinit.token, this.formReinit.nouveauMotDePasse).subscribe({
+      next: (res) => {
+        this.loading = false;
+        this.succes = res.message;
+        setTimeout(() => {
+          this.mode = 'connexion';
+          this.succes = '';
+          this.formReinit = { token: '', nouveauMotDePasse: '', confirmation: '' };
+          this.cdr.detectChanges();
+        }, 2500);
+        this.cdr.detectChanges();
+      },
+      error: (err) => {
+        this.loading = false;
+        this.erreur = err.error?.message || 'Lien invalide ou expiré.';
+        this.cdr.detectChanges();
+      }
+    });
+  }
+
+  changerMode(m: 'connexion' | 'inscription' | 'oublie') {
+    this.mode = m;
+    this.erreur = '';
+    this.succes = '';
+  }
 }

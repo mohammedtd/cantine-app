@@ -1,5 +1,4 @@
 <div class="login-container">
-
   <div class="login-card">
 
     <!-- Logo -->
@@ -11,57 +10,65 @@
       <p class="text-muted">Système de gestion de cantine scolaire</p>
     </div>
 
-    <!-- Tabs -->
-    <div class="login-tabs mb-4">
-      <button class="login-tab"
-              [class.active]="mode === 'connexion'"
-              (click)="mode = 'connexion'">
-        Connexion
-      </button>
-      <button class="login-tab"
-              [class.active]="mode === 'inscription'"
-              (click)="mode = 'inscription'">
-        Inscription
-      </button>
-    </div>
+    <!-- Tabs (seulement pour connexion / inscription) -->
+    @if (mode === 'connexion' || mode === 'inscription') {
+      <div class="login-tabs mb-4">
+        <button class="login-tab"
+                [class.active]="mode === 'connexion'"
+                (click)="changerMode('connexion')">
+          Connexion
+        </button>
+        <button class="login-tab"
+                [class.active]="mode === 'inscription'"
+                (click)="changerMode('inscription')">
+          Inscription
+        </button>
+      </div>
+    }
 
-    <!-- Erreur -->
+    <!-- Message d'erreur -->
     @if (erreur) {
-    <div class="erreur-popup">
-        <i class="bi bi-exclamation-triangle-fill me-2"></i>
-        {{ erreur }}
-    </div>
+      <div class="erreur-popup">
+        <i class="bi bi-exclamation-triangle-fill me-2"></i>{{ erreur }}
+      </div>
+    }
+
+    <!-- Message de succès -->
+    @if (succes) {
+      <div class="succes-popup">
+        <i class="bi bi-check-circle-fill me-2"></i>{{ succes }}
+      </div>
     }
 
     <!-- Formulaire connexion -->
     @if (mode === 'connexion') {
       <div class="d-flex flex-column gap-3">
         <div>
-          <label class="form-label fw-semibold small" style="color: #2d2d2d;">
-            Email
-          </label>
+          <label class="form-label fw-semibold small" style="color: #2d2d2d;">Email</label>
           <input type="email"
                  class="form-control rounded-3"
                  placeholder="votre@email.com"
                  [(ngModel)]="formConnexion.email">
         </div>
         <div>
-          <label class="form-label fw-semibold small" style="color: #2d2d2d;">
-            Mot de passe
-          </label>
+          <label class="form-label fw-semibold small" style="color: #2d2d2d;">Mot de passe</label>
           <input type="password"
                  class="form-control rounded-3"
                  placeholder="••••••••"
                  [(ngModel)]="formConnexion.motDePasse">
         </div>
-        <button class="btn-login mt-2"
+        <div class="text-end">
+          <button class="btn-link-oublie" (click)="changerMode('oublie')">
+            Mot de passe oublié ?
+          </button>
+        </div>
+        <button class="btn-login mt-1"
                 (click)="seConnecter()"
                 [disabled]="loading">
           @if (loading) {
             <span class="spinner-border spinner-border-sm me-2"></span>
           }
-          <i class="bi bi-box-arrow-in-right me-2"></i>
-          Se connecter
+          <i class="bi bi-box-arrow-in-right me-2"></i>Se connecter
         </button>
       </div>
     }
@@ -70,36 +77,28 @@
     @if (mode === 'inscription') {
       <div class="d-flex flex-column gap-3">
         <div>
-          <label class="form-label fw-semibold small" style="color: #2d2d2d;">
-            Nom complet
-          </label>
+          <label class="form-label fw-semibold small" style="color: #2d2d2d;">Nom complet</label>
           <input type="text"
                  class="form-control rounded-3"
                  placeholder="Jean Luc"
                  [(ngModel)]="formInscription.nom">
         </div>
         <div>
-          <label class="form-label fw-semibold small" style="color: #2d2d2d;">
-            Email
-          </label>
+          <label class="form-label fw-semibold small" style="color: #2d2d2d;">Email</label>
           <input type="email"
                  class="form-control rounded-3"
                  placeholder="votre@email.com"
                  [(ngModel)]="formInscription.email">
         </div>
         <div>
-          <label class="form-label fw-semibold small" style="color: #2d2d2d;">
-            Mot de passe
-          </label>
+          <label class="form-label fw-semibold small" style="color: #2d2d2d;">Mot de passe</label>
           <input type="password"
                  class="form-control rounded-3"
                  placeholder="••••••••"
                  [(ngModel)]="formInscription.motDePasse">
         </div>
         <div>
-          <label class="form-label fw-semibold small" style="color: #2d2d2d;">
-            Classe
-          </label>
+          <label class="form-label fw-semibold small" style="color: #2d2d2d;">Classe</label>
           <input type="text"
                  class="form-control rounded-3"
                  placeholder="3ème A"
@@ -111,12 +110,86 @@
           @if (loading) {
             <span class="spinner-border spinner-border-sm me-2"></span>
           }
-          <i class="bi bi-person-plus me-2"></i>
-          S'inscrire
+          <i class="bi bi-person-plus me-2"></i>S'inscrire
         </button>
       </div>
     }
 
-  </div>
+    <!-- Formulaire mot de passe oublié -->
+    @if (mode === 'oublie') {
+      <div>
+        <div class="back-header mb-4">
+          <button class="btn-back" (click)="changerMode('connexion')">
+            <i class="bi bi-arrow-left me-1"></i>Retour
+          </button>
+          <h5 class="mb-0 fw-bold" style="color:#2d2d2d;">Mot de passe oublié</h5>
+        </div>
+        <p class="text-muted small mb-4">
+          Saisissez votre adresse email. Si un compte existe, vous recevrez un lien pour réinitialiser votre mot de passe.
+        </p>
+        <div class="d-flex flex-column gap-3">
+          <div>
+            <label class="form-label fw-semibold small" style="color: #2d2d2d;">Email</label>
+            <input type="email"
+                   class="form-control rounded-3"
+                   placeholder="votre@email.com"
+                   [(ngModel)]="formOublie.email">
+          </div>
+          <button class="btn-login"
+                  (click)="demanderReinit()"
+                  [disabled]="loading || !!succes">
+            @if (loading) {
+              <span class="spinner-border spinner-border-sm me-2"></span>
+            }
+            <i class="bi bi-envelope me-2"></i>Envoyer le lien
+          </button>
+        </div>
+        @if (!succes) {
+          <div class="text-center mt-3">
+            <button class="btn-link-oublie" (click)="changerMode('connexion')">
+              <i class="bi bi-arrow-left me-1"></i>Retour à la connexion
+            </button>
+          </div>
+        }
+      </div>
+    }
 
+    <!-- Formulaire réinitialisation du mot de passe -->
+    @if (mode === 'reinitialiser') {
+      <div>
+        <div class="mb-4 text-center">
+          <div class="reinit-icon">
+            <i class="bi bi-key-fill"></i>
+          </div>
+          <h5 class="fw-bold mt-3" style="color:#2d2d2d;">Nouveau mot de passe</h5>
+          <p class="text-muted small">Choisissez un nouveau mot de passe sécurisé.</p>
+        </div>
+        <div class="d-flex flex-column gap-3">
+          <div>
+            <label class="form-label fw-semibold small" style="color: #2d2d2d;">Nouveau mot de passe</label>
+            <input type="password"
+                   class="form-control rounded-3"
+                   placeholder="••••••••"
+                   [(ngModel)]="formReinit.nouveauMotDePasse">
+          </div>
+          <div>
+            <label class="form-label fw-semibold small" style="color: #2d2d2d;">Confirmer le mot de passe</label>
+            <input type="password"
+                   class="form-control rounded-3"
+                   placeholder="••••••••"
+                   [(ngModel)]="formReinit.confirmation">
+          </div>
+          <button class="btn-login mt-1"
+                  (click)="reinitialiserMotDePasse()"
+                  [disabled]="loading || !!succes">
+            @if (loading) {
+              <span class="spinner-border spinner-border-sm me-2"></span>
+            }
+            <i class="bi bi-check-circle me-2"></i>Confirmer
+          </button>
+        </div>
+      </div>
+    }
+
+  </div>
 </div>

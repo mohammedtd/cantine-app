@@ -25,6 +25,15 @@ export class AuthService {
     );
   }
 
+  motDePasseOublie(email: string): Observable<{ message: string }> {
+    return this.http.post<{ message: string }>(`${this.baseUrl}/forgot-password`, { email });
+  }
+
+  reinitialiserMotDePasse(token: string, nouveauMotDePasse: string): Observable<{ message: string }> {
+    return this.http.post<{ message: string }>(`${this.baseUrl}/reset-password`, { token, nouveauMotDePasse });
+  }
+
+
   sauvegarderSession(res: AuthResponse) {
     localStorage.setItem('token', res.token);
     localStorage.setItem('utilisateur', JSON.stringify(res.utilisateur));
