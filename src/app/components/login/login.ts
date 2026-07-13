@@ -46,20 +46,24 @@ export class Login implements OnInit {
   ) {}
 
   ngOnInit() {
+    const token = this.route.snapshot.queryParams['token'];
+    const requestedMode = this.route.snapshot.queryParams['mode'];
+
+    if (token) {
+      this.mode = 'reinitialiser';
+      this.formReinit.token = token;
+      return;
+    }
+
     if (this.authService.estConnecte()) {
       this.router.navigate(['/accueil']);
       return;
     }
-    const requestedMode = this.route.snapshot.queryParams['mode'];
-    const token = this.route.snapshot.queryParams['token'];
 
     if (requestedMode === 'connexion' || requestedMode === 'inscription') {
       this.mode = requestedMode;
     } else if (requestedMode === 'oublie') {
       this.mode = 'oublie';
-    } else if (token) {
-      this.mode = 'reinitialiser';
-      this.formReinit.token = token;
     }
   }
 
