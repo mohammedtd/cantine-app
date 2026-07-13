@@ -1,6 +1,6 @@
 {
   "buildCommand": "npm run build",
-  "outputDirectory": "dist/cantine-app",
+  "outputDirectory": "dist/cantine-app/browser",
   "rewrites": [
     { "source": "/(.*)", "destination": "/index.html" }
   ]
